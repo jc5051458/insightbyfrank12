@@ -1,6 +1,31 @@
 // Frank.js - Organized and improved
 // Wait for DOM to load before running scripts
 document.addEventListener("DOMContentLoaded", function() {
+    // --- Card Click Handler ---
+    function handleCardClick(title, description, imageUrl) {
+        // Save card data to localStorage for the detail page
+        localStorage.setItem('selectedCard', JSON.stringify({
+            title: title,
+            description: description,
+            image: imageUrl
+        }));
+        // Redirect to detail page
+        window.location.href = 'meaven.html';
+    }
+
+    // Add click listeners to all cards
+    document.querySelectorAll('.card1').forEach(card => {
+        card.addEventListener('click', function() {
+            const title = this.querySelector('.text-sub h4').textContent;
+            const description = this.querySelector('.text-sub p').textContent;
+            const imageUrl = this.querySelector('img').src;
+            handleCardClick(title, description, imageUrl);
+        });
+
+        // Add hover effect class
+        card.classList.add('clickable');
+    });
+
     // --- Navigation Functions ---
     function goToPage(page) {
         window.location.href = page;
@@ -81,15 +106,38 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
-    // --- Card Title/Description from URL ---
-    const urlParams = new URLSearchParams(window.location.search);
-    const title = urlParams.get('title');
-    const description = urlParams.get('desc');
-    if (title && document.getElementById('card-title')) {
-        document.getElementById('card-title').textContent = title;
-    }
-    if (description && document.getElementById('card-description')) {
-        document.getElementById('card-description').textContent = description;
+    // --- Load Card Details on Detail Page ---
+    if (window.location.pathname.includes('meaven.html')) {
+        const selectedCard = JSON.parse(localStorage.getItem('selectedCard'));
+        if (selectedCard) {
+            // Update page content with selected card details
+            if (document.getElementById('card-title')) {
+                document.getElementById('card-title').textContent = selectedCard.title;
+            }
+            const powerBiImage = document.querySelector('.powerpoint img');
+            if (powerBiImage) {
+                powerBiImage.src = selectedCard.image;
+                powerBiImage.alt = selectedCard.title;
+            }
+            
+            // Update breadcrumb
+            const mavenSpan = document.querySelector('.maeven span');
+            if (mavenSpan) {
+                mavenSpan.textContent = selectedCard.title;
+            }
+
+            // Animate content entrance
+            document.querySelectorAll('.di-profile2, .powerpoint, .about')
+                .forEach(element => {
+                    element.style.opacity = '0';
+                    element.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        element.style.transition = 'all 0.5s ease';
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, 100);
+                });
+        }
     }
 
     // --- Remove or comment out incomplete code ---

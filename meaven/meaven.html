@@ -2,22 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="assist/Frank .png" type="frank.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./font-6 - Copy/css/all.css">
+    <meta name="description" content="InsightbyFrank - Data Analytics and Visualization Portfolio">
+    <meta name="author" content="Frank Agba">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assist/Frank.png" type="image/png">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="./BS/bootstrap tools/bootstrap.css">
-    <link rel="stylesheet" href="./meaven.css">
     <link rel="stylesheet" href="./font-6 - Copy/css/all.css">
-    <title>InsightbyFrank</title>
+    <link rel="stylesheet" href="./meaven.css">
+    
+    <title>InsightbyFrank | Data Analytics Portfolio</title>
 </head>
 <body>
-         <nav class="navbar navbar-expand-lg navbar-light shally">
-        <a class="navbar-brand" href="">
-            <img src="./assist/Frank .png" alt="Loading..." style="width: 80px; height: 110px;" />
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fa-solid fa-bars" style="color: white;"></i>
-        </button>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light shally">
+        <div class="container">
+            <a class="navbar-brand" href="/index.html" aria-label="InsightbyFrank Home">
+                <img src="./assist/Frank.png" alt="InsightbyFrank Logo" width="80" height="110" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars" style="color: white;" aria-hidden="true"></i>
+            </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav m-auto">
@@ -284,20 +293,38 @@
             </div>
            </div>
       </footer>
-    <script>
-              // Get query parameters from URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const title = getElementById('title');
-            const description = urlParams.get('desc');
-
-            // Set content
-            document.getElementById('card-title').textContent = title;
-            document.getElementById('card-description').textContent = description;
-
-
-    </script>
-
+    <!-- Scripts -->
     <script src="./BS/bootstrap tools/jquery-3.2.1.min.js"></script>
     <script src="./BS/bootstrap tools/bootstrap.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get query parameters from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const title = urlParams.get('title');
+            const description = urlParams.get('desc');
+
+            // Set content if elements exist
+            if (title && document.getElementById('card-title')) {
+                document.getElementById('card-title').textContent = title;
+            }
+            if (description && document.getElementById('card-description')) {
+                document.getElementById('card-description').textContent = description;
+            }
+            
+            // Initialize tooltips
+            $('[data-toggle="tooltip"]').tooltip();
+            
+            // Character counter for comment textarea
+            const textarea = document.querySelector('textarea');
+            const charCounter = document.querySelector('p:contains("2000 characters")');
+            if (textarea && charCounter) {
+                textarea.addEventListener('input', function() {
+                    const remaining = 2000 - this.value.length;
+                    charCounter.textContent = `${remaining} characters remaining`;
+                });
+            }
+        });
+    </script>
 </body>
 </html>
