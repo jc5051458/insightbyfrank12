@@ -1,145 +1,198 @@
-// Frank.js - Organized and improved
-// Wait for DOM to load before running scripts
-document.addEventListener("DOMContentLoaded", function() {
-    // --- Card Click Handler ---
-    function handleCardClick(title, description, imageUrl) {
-        // Save card data to localStorage for the detail page
-        localStorage.setItem('selectedCard', JSON.stringify({
+document.addEventListener('DOMContentLoaded', function() {
+    // --- Constants and Cached Elements ---
+    const MAX_LIKES = 9999;
+    const ANIMATION_DURATION = 300;
+    
+    // --- Card Management ---
+    const cards = document.querySelectorAll('.card1');
+    const likeButtons = document.querySelectorAll('.love1');
+    const commentButtons = document.querySelectorAll('.commit2');
+
+    // Initialize card interactions
+    function initializeCards() {
+        cards.forEach((card, index) => {
+            // Load saved likes/comments from localStorage
+            const cardId = `card-${index}`;
+            const likes = parseInt(localStorage.getItem(`${cardId}-likes`)) || 0;
+            const comments = parseInt(localStorage.getItem(`${cardId}-comments`)) || 0;
+
+            // Update display
+            const likeCount = card.querySelector('.love1 .like-number');
+            const commentCount = card.querySelector('.commit2 .like-number');
+            if (likeCount) likeCount.textContent = likes;
+            if (commentCount) commentCount.textContent = comments;
+
+            // Add click handler
+            card.addEventListener('click', function(e) {
+                // Don't navigate if clicking like/comment buttons
+                if (e.target.closest('.love1') || e.target.closest('.commit2')) {
+                    return;
+                }
+                
+                const title = card.querySelector('.text-sub h4').textContent;
+                const description = card.querySelector('.text-sub p').textContent;
+                const image = card.querySelector('img').src;
+                
+                saveCardDetails(title, description, image);
+                window.location.href = 'meaven.html';
+            });
+        });
+    }
+
+    // Save card details for detail page
+    function saveCardDetails(title, description, image) {
+        const cardData = {
             title: title,
             description: description,
-            image: imageUrl
-        }));
-        // Redirect to detail page
-        window.location.href = 'meaven.html';
+            image: image,
+            timestamp: new Date().toISOString()
+        };
+        localStorage.setItem('selectedCard', JSON.stringify(cardData));
     }
 
-    // Add click listeners to all cards
-    document.querySelectorAll('.card1').forEach(card => {
-        card.addEventListener('click', function() {
-            const title = this.querySelector('.text-sub h4').textContent;
-            const description = this.querySelector('.text-sub p').textContent;
-            const imageUrl = this.querySelector('img').src;
-            handleCardClick(title, description, imageUrl);
-        });
+    // --- Like & Comment System ---
+    function initializeLikeSystem() {
+        likeButtons.forEach((button, index) => {
+            const cardId = `card-${index}`;
+            const likeCount = button.querySelector('.like-number');
+            const icon = button.querySelector('i');
 
-        // Add hover effect class
-        card.classList.add('clickable');
+            // Check if already liked
+            const isLiked = localStorage.getItem(`${cardId}-liked`) === 'true';
+            if (isLiked) {
+                icon.classList.replace('fa-regular', 'fa-solid');
+            }
+
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                const currentLikes = parseInt(likeCount.textContent);
+                const isCurrentlyLiked = icon.classList.contains('fa-solid');
+
+                if (!isCurrentlyLiked && currentLikes < MAX_LIKES) {
+                    // Like animation
+                    icon.classList.add('animate-like');
+                    icon.classList.replace('fa-regular', 'fa-solid');
+                    likeCount.textContent = currentLikes + 1;
+                    localStorage.setItem(`${cardId}-likes`, currentLikes + 1);
+                    localStorage.setItem(`${cardId}-liked`, 'true');
+                } else {
+                    // Unlike
+                    icon.classList.remove('animate-like');
+                    icon.classList.replace('fa-solid', 'fa-regular');
+                    likeCount.textContent = Math.max(0, currentLikes - 1);
+                    localStorage.setItem(`${cardId}-likes`, Math.max(0, currentLikes - 1));
+                    localStorage.setItem(`${cardId}-liked`, 'false');
+                }
+
+                // Remove animation class after animation completes
+                setTimeout(() => {
+                    icon.classList.remove('animate-like');
+                }, ANIMATION_DURATION);
+            });
+        });
+    }
+
+    // --- Comment System ---
+    function initializeCommentSystem() {
+        commentButtons.forEach((button, index) => {
+            const cardId = `card-${index}`;
+            const commentCount = button.querySelector('.like-number');
+
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Scroll to comment section if on detail page
+                const commentSection = document.querySelector('.comment1');
+                if (commentSection) {
+                    commentSection.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    }
+
+    // --- Share Button ---
+    const shareButtons = document.querySelectorAll('button:has(i.fa-share)');
+    shareButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const url = window.location.href;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: document.title,
+                    url: url
+                }).catch(console.error);
+            } else {
+                // Fallback: Copy to clipboard
+                navigator.clipboard.writeText(url)
+                    .then(() => {
+                        const originalText = button.textContent;
+                        button.textContent = 'Copied!';
+                        setTimeout(() => {
+                            button.textContent = originalText;
+                        }, 2000);
+                    })
+                    .catch(console.error);
+            }
+        });
     });
 
-    // --- Navigation Functions ---
-    function goToPage(page) {
-        window.location.href = page;
-    }
-    window.goToPage = goToPage; // Expose if needed globally
+    // --- Navigation Dropdown ---
+    const dropdowns = document.querySelectorAll('.nav-item.dropdown');
+    dropdowns.forEach(dropdown => {
+        dropdown.addEventListener('mouseenter', function() {
+            this.querySelector('.dropdown-menu').classList.add('show');
+        });
+        dropdown.addEventListener('mouseleave', function() {
+            this.querySelector('.dropdown-menu').classList.remove('show');
+        });
+    });
 
-    function redirectToPage(url) {
-        window.location.href = url;
-    }
-    window.redirectToPage = redirectToPage;
+    // --- Initialize Everything ---
+    initializeCards();
+    initializeLikeSystem();
+    initializeCommentSystem();
 
-    // --- Image Carousel ---
-    // Array of image URLs for each project card (replace with your actual image URLs)
-    const imageSets = {
-        card1: [
-            "./assist/Screenshot-2025-01-26-183650.png",
-            "https://via.placeholder.com/300x150?text=Image+1",
-            "https://via.placeholder.com/300x150?text=Image+2"
-        ],
-    };
-
-    // Function to change images for each card
-    function changeImages() {
-        for (let cardId in imageSets) {
-            let card = document.getElementById(cardId);
-            if (!card) continue;
-            let img = card.querySelector("img"); // Assumes an <img> inside the card
-            if (!img) continue;
-            let currentIndex = imageSets[cardId].indexOf(img.src);
-            if (currentIndex === -1) currentIndex = 0;
-            let nextIndex = (currentIndex + 1) % imageSets[cardId].length;
-            img.src = imageSets[cardId][nextIndex];
-        }
-    }
-    setInterval(changeImages, 3000);
-
-    // --- Like & Comment Logic ---
-    const likeIcon = document.getElementById("likeIcon");
-    const commentIcon = document.getElementById("commentIcon");
-    const likeCountSpan = document.getElementById("likeCount");
-    const commentCountSpan = document.getElementById("commentCount");
-
-    let likeCount = parseInt(localStorage.getItem("likeCount")) || 0;
-    let liked = localStorage.getItem("liked") === "true";
-    let commentCount = parseInt(localStorage.getItem("commentCount")) || 0;
-
-    // Initial display
-    if (likeCountSpan) likeCountSpan.textContent = likeCount;
-    if (commentCountSpan) commentCountSpan.textContent = commentCount;
-    if (liked && likeIcon) {
-        likeIcon.classList.add("liked");
-        likeIcon.classList.replace("fa-regular", "fa-solid");
-    }
-
-    if (likeIcon) {
-        likeIcon.addEventListener("click", () => {
-            liked = !liked;
-            if (liked) {
-                likeCount++;
-                likeIcon.classList.add("liked");
-                likeIcon.classList.replace("fa-regular", "fa-solid");
-            } else {
-                likeCount = Math.max(0, likeCount - 1);
-                likeIcon.classList.remove("liked");
-                likeIcon.classList.replace("fa-solid", "fa-regular");
+    // Add smooth scroll for all anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
             }
-            if (likeCountSpan) likeCountSpan.textContent = likeCount;
-            localStorage.setItem("likeCount", likeCount);
-            localStorage.setItem("liked", liked);
+        });
+    });
+
+    // --- Newsletter Form ---
+    const newsletterForm = document.querySelector('.newsletter form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            // Add your newsletter subscription logic here
+            console.log('Newsletter subscription:', email);
+            // Show success message
+            const successMessage = document.createElement('div');
+            successMessage.textContent = 'Thank you for subscribing!';
+            successMessage.style.color = 'green';
+            this.appendChild(successMessage);
         });
     }
 
-    if (commentIcon) {
-        commentIcon.addEventListener("click", () => {
-            commentCount++;
-            if (commentCountSpan) commentCountSpan.textContent = commentCount;
-            localStorage.setItem("commentCount", commentCount);
+    // Add CSS class for animations when elements come into view
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
         });
-    }
+    });
 
-    // --- Load Card Details on Detail Page ---
-    if (window.location.pathname.includes('meaven.html')) {
-        const selectedCard = JSON.parse(localStorage.getItem('selectedCard'));
-        if (selectedCard) {
-            // Update page content with selected card details
-            if (document.getElementById('card-title')) {
-                document.getElementById('card-title').textContent = selectedCard.title;
-            }
-            const powerBiImage = document.querySelector('.powerpoint img');
-            if (powerBiImage) {
-                powerBiImage.src = selectedCard.image;
-                powerBiImage.alt = selectedCard.title;
-            }
-            
-            // Update breadcrumb
-            const mavenSpan = document.querySelector('.maeven span');
-            if (mavenSpan) {
-                mavenSpan.textContent = selectedCard.title;
-            }
-
-            // Animate content entrance
-            document.querySelectorAll('.di-profile2, .powerpoint, .about')
-                .forEach(element => {
-                    element.style.opacity = '0';
-                    element.style.transform = 'translateY(20px)';
-                    setTimeout(() => {
-                        element.style.transition = 'all 0.5s ease';
-                        element.style.opacity = '1';
-                        element.style.transform = 'translateY(0)';
-                    }, 100);
-                });
-        }
-    }
-
-    // --- Remove or comment out incomplete code ---
-    // const changeTexet = getElementById(); // Removed: not used/invalid
+    // Observe elements that should animate on scroll
+    document.querySelectorAll('.card1, .powerpoint, .about, .additional')
+        .forEach(el => observer.observe(el));
 });

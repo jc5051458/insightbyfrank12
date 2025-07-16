@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <link rel="icon" href="assist/Frank .png" type="frank.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/Frank.css">
+    <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./font-6 - Copy/css/all.css">
     <link rel="stylesheet" href="./BS/bootstrap tools/bootstrap.css">
     <link rel="stylesheet" href="./css/pre.css">
-    <title>InsightbyFrank</title>
+    <title>InsightbyFrank | Data Analytics Portfolio</title>
 </head>
 <body>
     <div id="preloader">
@@ -18,48 +18,31 @@
 
                 <!-- navbar -->
      <nav class="navbar navbar-expand-lg navbar-light shally">
-        <a class="navbar-brand" href="./index.html" aria-label="InsightbyFrank Home">
-            <img src="./assist/Frank .png" alt="Loading..." style="width: 70px; height: 85px;" />
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fa-solid fa-bars" style="color: white;"></i>
-        </button>
+
+            <a class="navbar-brand" href="./index.html">
+                <img src="./assist/Frank .png" alt="InsightbyFrank Logo" width="80" height="110" />
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" 
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars" style="color: white;" aria-hidden="true"></i>
+            </button>
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav m-auto">
-           <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
-                Discover
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
+            <li class="nav-item">
+                <a class="nav-link" href="https://mavenanalytics.io/challenges" style="color: white">Discover</a>
+              </li>
+            <li class="nav-item">
+              <a class="nav-link" href="https://mavenanalytics.io/maven-for-business" style="color: white"> Business</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" style="color: white">About</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
-                Business
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" style="color: white">Showcase</a>
+                <a class="nav-link" href="https://mavenanalytics.io/showcase" style="color: white">Showcase</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" style="color: white">Testimonials</a>
+                <a class="nav-link" href="https://mavenanalytics.io/testimonials" style="color: white">Testimonials</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" style="color: white">Pricing</a>
+                <a class="nav-link" href="https://mavenanalytics.io/signup/pricing" style="color: white">Pricing</a>
               </li>
           </ul>
           <div class="btn-nav-bar">
@@ -90,37 +73,46 @@
             </div>
         </div>
         <div class="project3">
-            <a class="proj active" href="./Frank.html">Projects</a>
+            <a class="proj active" href="./index.html">Projects</a>
             <a href="./like.html" style="color: #000;">Info</a>
             <a href="./about.html" style="color: #000;">Liked</a>
         </div>
         <div class="card-gridf1">
             <!-- Card: Coffee Sales -->
-            <div class="card1" onclick="goToPage('meaven/meaven.html')">
-                <img src="./assist/coffee store .png" alt="">
-                <div class="text-sub">
-                    <h4>Coffee Sales</h4>
-                    <p>Analyze coffee dataset to see trends</p>
+            <div class="card1" data-card-id="coffee-sales">
+                <div class="card-content">
+                    <div class="card-image-container">
+                        <img src="./assist/coffee store .png" alt="Coffee Sales Dashboard" loading="lazy">
+                    </div>
+                    <div class="text-sub">
+                        <h4>Coffee Sales</h4>
+                        <p>Analyze coffee dataset to see trends</p>
+                    </div>
+                    <div class="likely">
+                        <div class="love1" data-like-count="0">
+                            <i class="fa-regular fa-heart" aria-label="Like"></i>
+                            <span class="like-number">0</span>
+                        </div>
+                        <div class="commit2" data-comment-count="0">
+                            <i class="fa-regular fa-comment" aria-label="Comment"></i>
+                            <span class="like-number">0</span>
+                        </div>
+                        <div class="name2">
+                            <div class="second-profile23" aria-label="Profile picture of Frank Agba"></div>
+                            <h6>Frank Agba</h6>
+                            <img src="./assist/verity.png" alt="Verified" class="verify-badge">
+                        </div>
+                    </div>
                 </div>
-                <div class="likely">
-                    <div class="love1">
-                        <i class="fa-solid fa-heart"></i>
-                        <span class="like-number" id="likeCoutn">0</span>
-                    </div>
-                    <div class="commit2">
-                        <i class="fa-regular fa-comment"></i>
-                        <span class="like-number">0</span>
-                    </div>
-                    <div class="name2">
-                        <div class="second-profile23"></div>
-                        <h6>Frank Agba</h6>
-                        <img src="./assist/verity.png" alt="" class="lanclas">
-                    </div>
+                <div class="card-overlay">
+                    <button class="share-btn" aria-label="Share">
+                        <i class="fa-solid fa-share"></i>
+                    </button>
                 </div>
             </div>
 
             <!-- Card: Beauty Store -->
-            <div class="card1" onclick="goToPage('meaven/meaven.html')">
+            <div class="card1" onclick="goToPage('meaven/index.html')">
                 <img src="./assist/Screenshot-2025-02-02-230300.png" alt="">
                 <div class="text-sub">
                     <h4>Beauty Store</h4>
@@ -144,7 +136,7 @@
             </div>
 
             <!-- Card: Technical Support || Agent Performance -->
-            <div class="card1" onclick="goToPage('meaven/meaven.html')">
+            <div class="card1" onclick="goToPage('meaven/index.html')">
                 <img src="./assist/Screenshot-2025-01-26-183650.png" alt="">
                 <div class="text-sub">
                     <h4>Technical Support || Agent Performance</h4>
@@ -168,7 +160,7 @@
             </div>
 
             <!-- Card: Merchandise Sales -->
-            <div class="card1">
+            <div class="card1"  onclick="goToPage('meaven/index.html')">
                 <img src="./assist/Screenshot-2025-02-02-230300.png" alt="">
                 <div class="text-sub">
                     <h4>Merchandise Sales</h4>
@@ -192,7 +184,7 @@
             </div>
 
             <!-- Card: Christmas Sales -->
-            <div class="card1" onclick="goToPage('meaven/meaven.html')">
+            <div class="card1" onclick="goToPage('meaven/index.html')">
                 <img src="./assist/coffee store .png" alt="">
                 <div class="text-sub">
                     <h4>Christmas Sales</h4>
@@ -217,6 +209,7 @@
     </div>
         <button class="load">Load more projects</button>
       </main>
+    <div class="toast-message" id="toastMessage">Project liked successfully!</div>
       <footer>
             <div class="kihkk">
                 <div class="gingj">
@@ -250,6 +243,9 @@
                         </div>
                     <div class="discover">
                         <h5>SUPPORT</h5>
+                        <a href="./help.html">
+
+                        </a>
                             <p>Help Center</p>
                             <p>product updates</p>
                             <p>Request A Feature</p>
@@ -257,6 +253,7 @@
                     </div>
                     <div class="BUSINESS">
                         <h5>BUSINESS</h5>
+                         <a href="./help.html"></a>
                             <p>Meaven business</p>
                             <p>Resouce Hub</p>
                             <p>Customer Stores</p>
@@ -264,10 +261,14 @@
                     </div>
                     <div class="discover">
                         <h5>DISCOVER</h5>
+                         <a href="./help.html">
+
+                         </a>
                             <p>Meaven Showcase</p>
                             <p>Testimonials</p>
                     </div>
                     <div class="RESOURCES">
+                         <a href="./help.html"></a>
                         <h5>RESOURCES</h5>
                         <p>Maven Blog</p>
                         <p>Data Challenges</p>
@@ -278,6 +279,7 @@
                         <p>Data Literacy Assesssment</p>
                     </div>
                     <div class="discover">
+                         <a href="./help.html"></a>
                         <h5>COMPANY</h5>
                         <p>Meet The Team</p>
                         <p>Contact</p>
@@ -296,18 +298,134 @@
                     <p>Contact</p>
                 </div>
                 <div class="socal-icon">
-                <i class="fa-brands fa-square-facebook gradient-icon"></i>
-                <i class="fa-brands fa-linkedin gradient-icon"></i>
-                <i class="fa-brands fa-youtube gradient-icon"></i>
-                <i class="fa-brands fa-tiktok gradient-icon"></i>
-                <i class="fa-brands fa-instagram gradient-icon"></i>
+                     <a href="https://www.facebook.com/share/1AwDHRZx9a/?mibextid=wwXIfr">
+                        <i class="fa-brands fa-square-facebook gradient-icon"></i>
+                     </a>
+                     <a href="https://tr.ee/qTxpkG1hWB">
+                         <i class="fa-brands fa-linkedin gradient-icon"></i>
+                     </a>
+                     <a href="https://tr.ee/zDhjPsdSrR">
+                        <i class="fa-brands fa-github gradient-icon"></i>
+                     </a>
+                     <a href="https://medium.com/@frankgodwin796">
+                         <i class="fa-brands fa-medium gradient-icon"></i>
+                     </a>
+                     <a href="https://www.instagram.com/frankie.johnson_?igsh=bjRiN2pudnYxMHVk&utm_source=qr">
+                       <i class="fa-brands fa-instagram gradient-icon"></i> 
+                     </a>
             </div>
            </div>
       </footer>
 
-        <script src="./js/pre.js"></script>
-        <script src="./js/Frank.js"></script>
         <script src="./BS/bootstrap tools/jquery-3.2.1.min.js"></script>
         <script src="./BS/bootstrap tools/bootstrap.js"></script>
+        <script src="./js/pre.js"></script>
+        <script src="./js/card-system.js"></script>
+        <script src="./js/floating-nav.js"></script>
+        <script src="./js/index.js"></script>
+
+        <!-- Floating Navigation Controls -->
+        <div class="floating-nav">
+            <button class="float-btn scroll-top" aria-label="Scroll to top">
+                <i class="fa-solid fa-chevron-up"></i>
+            </button>
+            <button class="float-btn scroll-down" aria-label="Scroll to bottom">
+                <i class="fa-solid fa-chevron-down"></i>
+            </button>
+        </div>
+
+        <!-- Toast Message and Floating Navigation Styles -->
+        <style>
+            .toast-message {
+                position: fixed;
+                bottom: 20px;
+                left: 50%;
+                transform: translateX(-50%) translateY(100%);
+                background: rgba(0, 0, 0, 0.8);
+                color: white;
+                padding: 12px 24px;
+                border-radius: 4px;
+                z-index: 1000;
+                opacity: 0;
+                transition: all 0.3s ease;
+            }
+
+            .toast-message.show {
+                transform: translateX(-50%) translateY(0);
+                opacity: 1;
+            }
+
+            /* Floating Navigation Styles */
+            .floating-nav {
+                position: fixed;
+                right: 2rem;
+                bottom: 2rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                z-index: 999;
+            }
+
+            .float-btn {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                background: rgba(0, 0, 0, 0.8);
+                border: none;
+                color: white;
+                font-size: 1.2rem;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            .float-btn.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .float-btn:hover {
+                background: var(--primary-color, #007bff);
+                transform: translateY(-3px);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+
+            .float-btn:active {
+                transform: translateY(-1px);
+            }
+
+            .float-btn i {
+                transition: transform 0.3s ease;
+            }
+
+            .float-btn:hover i {
+                transform: scale(1.2);
+            }
+
+            /* Responsive adjustments */
+            @media (max-width: 768px) {
+                .floating-nav {
+                    right: 1rem;
+                    bottom: 1rem;
+                }
+
+                .float-btn {
+                    width: 40px;
+                    height: 40px;
+                    font-size: 1rem;
+                }
+            }
+
+            /* Add smooth scroll behavior to html */
+            html {
+                scroll-behavior: smooth;
+            }
+        </style>
 </body>
 </html>
