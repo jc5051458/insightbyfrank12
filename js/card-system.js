@@ -4,14 +4,18 @@ class CardSystem {
         this.cards = document.querySelectorAll('.card1');
         this.initializeCards();
         this.setupEventListeners();
-    }
+        this.cardData['first-img']
 
+    }
+    
     initializeCards() {
         this.cards.forEach((card, index) => {
             const cardId = card.dataset.cardId || `card-${index}`;
             this.loadCardState(card, cardId);
             this.setupCardInteractions(card, cardId);
         });
+        this.cardData['first-img']
+
     }
 
     loadCardState(card, cardId) {
@@ -29,6 +33,8 @@ class CardSystem {
                 likeIcon.classList.replace('fa-regular', 'fa-solid');
                 likeIcon.classList.add('liked');
             }
+            this.cardData['first-img']
+
         }
 
         // Load comments

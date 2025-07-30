@@ -7,5 +7,5 @@ window.addEventListener("load", () => {
     setTimeout(() => {
       preloader.style.display = "none";
       mainContent.style.display = "block";
-    }, 5000); // Match CSS fadeOut duration + delay
+    }, 4000); // Match CSS fadeOut duration + delay
   });

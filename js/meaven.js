@@ -78,6 +78,28 @@ class MavenPageManager {
             powerBiImage.alt = this.cardData.title;
             this.setupImageLoadingEffect(powerBiImage);
         }
+
+        const additionaliImage = document.querySelector('.additional img');
+        if ( additionaliImage && this.cardData.image) {
+             additionaliImage.src = this.cardData.image;
+            additionaliImage.alt = this.cardData.title;
+            this.setupImageLoadingEffect(additionaliImage);
+        }
+
+         const firstImg = document.querySelector('.first-img');
+        if ( firstImg  && this.cardData.image) {
+             firstImg.src = this.cardData.image;
+           firstImg.alt = this.cardData.title;
+            this.setupImageLoadingEffect(firstImg);
+        }
+
+
+
+        // Update breadcrumb
+        const coffee = document.querySelector('.coffee h2');
+        if (coffee) {
+            coffee.textContent = this.cardData.title;
+        }
     }
 
     setupImageLoadingEffect(img) {

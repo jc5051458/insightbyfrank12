@@ -52,15 +52,18 @@ function initializeImageModal() {
             const bgImage = style.backgroundImage.slice(4, -1).replace(/"/g, "");
             openModal(bgImage);
         });
+        this.cardData['first-img']
+
     }
 
     // Add click event to powerpoint image
-    const powerpointImg = document.querySelector('.powerpoint img');
+        const powerpointImg = document.querySelector('.powerpoint img');
     if (powerpointImg) {
         powerpointImg.addEventListener('click', function() {
             openModal(this.src);
         });
     }
+
 
     // Close modal when clicking close button
     closeBtn.addEventListener('click', (e) => {

@@ -1,9 +1,7 @@
 class ProjectsCarousel {
     constructor() {
-        this.container = document.querySelector('.more-project');
+        this.container = document.querySelector('.card-gridf1');
         this.cards = Array.from(document.querySelectorAll('.card1'));
-        this.prevBtn = document.querySelector('.nav-btn.prev');
-        this.nextBtn = document.querySelector('.nav-btn.next');
         this.currentIndex = 0;
         this.cardWidth = 0;
         this.visibleCards = 0;
