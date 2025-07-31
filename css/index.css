@@ -22,8 +22,9 @@ body {
 
 .navbar-nav {
     justify-content: space-between;
-    width: 40%;
+    width: 50%;
     font-weight: 600;
+    margin: auto;
     color: black;
 }
 .btn2{
@@ -31,7 +32,7 @@ body {
     background: linear-gradient(to top, #4de2a4, #c3cc40);
     color: whitesmoke;
     border: none;
-    margin: 0 12px;
+    margin: 0 80px;
     font-weight: 500;
     border-radius: 30px;
 }
@@ -378,13 +379,16 @@ footer {
         width: 100%;
         height: fit-content;
     }
-    .navbar-nav ul{
-       margin-right: 60px;
+    .navbar-nav {
+         margin-right: 90%;
+    }
+    .btn2{
+        margin: 0 10px;
     }
     .profile {
-    width: 97%;
-    margin: auto;
-}
+        width: 98%;
+        margin: auto;
+    }
 
 .name{
     display: flex;
@@ -542,11 +546,18 @@ footer {
         width: 100%;
         height: fit-content;
     }
-    .navbar-nav ul{
-       margin-right: 60px;
+   .navbar-nav {
+         margin-right: 90%;
+    }
+    .btn2{
+        margin: 0 10px;
     }
     .profile {
-    width: 97%;
+        width: 98%;
+        margin: auto;
+    }
+    .profile {
+    width: 98%;
     margin: auto;
 }
 
@@ -593,7 +604,7 @@ footer {
 }
 .card1 {
     background-color: white;
-    width: 24rem;
+    width: 23rem;
     padding: 10px;
     height: 97%;
     border-radius: 7px;
@@ -699,21 +710,37 @@ footer {
         width: 60%;
         margin: 20px auto;
     }
-
+}
 
     @media screen and (max-width: 480px){
         .frank{
         width: 100%;
         height: fit-content;
     }
-    .navbar-nav ul{
-       margin-right: 60px;
+    .navbar-nav {
+         margin-right: 90%;
+    }
+    .btn2{
+        margin: 0 10px;
     }
     .profile {
-    width: 97%;
-    margin: auto;
+        width: 98%;
+        margin: auto;
+    }
+    .profile {
+        width: 97%;
+        margin: auto;
+    }
+.jjblu img{
+    position: relative;
+    background-image: url(/assist/Screenshot-2025-03-09-104323.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: max-content;
+    margin: -30px auto;
+    top: 10px;
 }
-
 .name{
     display: flex;
     justify-content: space-around;
@@ -729,7 +756,7 @@ footer {
 .develope{
     display: flex;
     justify-content: space-between;
-    width: 60%;
+    width: 63%;
 }
 .develope h4{
     margin-top: -8px;
@@ -942,5 +969,29 @@ footer {
         margin: 20px auto;
     }
 
+
+}
+@media screen and(max-width: 375px) {
+      .profile {
+        width: 97%;
+        margin: auto;
+    }
+
+.name{
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    align-items: center;
+}
+.name img{
+    width: 17px;
+    align-items: center;
+    object-fit: contain;
+    height: 15px;
+}
+.develope{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
 }
 }
